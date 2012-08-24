@@ -1,0 +1,15 @@
+{
+  "name": "Break Helper",
+  "version": "1.3.1.2",
+  "description": "Reminds you to take a break, because breaks are good for your health and productivity",
+  "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
+  "browser_action": {
+    "default_icon": "icon.png",
+	"popup": "popup.html"
+  },
+  "permissions": ["notifications"],
+  "options_page": "options.html",
+  "background_page": "background.html"
+}
