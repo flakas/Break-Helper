@@ -84,7 +84,7 @@ var timerLeft = backgroundPage.rules[backgroundPage.settings.rule].breakTime;
 			timer.html(minutes + ':' + seconds);
 				
 		}								
-		setTimeout("drawTimer()", 1000);
+		setTimeout(drawTimer, 1000);
 	}
 	function playSound( url ){   
 		//$("body").append("<embed src=\""+url+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" width=\"0\" height=\"0\">");

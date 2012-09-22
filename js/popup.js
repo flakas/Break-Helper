@@ -31,7 +31,7 @@ function drawTimer() {
 		timer.html(minutes + ':' + seconds);
 			
 	}								
-	setTimeout("drawTimer()", 1000);
+	setTimeout(drawTimer, 1000);
 }
 
 function reset_timer() {

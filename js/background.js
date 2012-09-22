@@ -122,7 +122,7 @@ function skipForAnHour()
 	closeNotification();
 	statistics.hourSkips1 = parseInt(statistics.hourSkips1) + 1;
 	updateStatistics();
-	timer = setTimeout("displayNotification()", 1000 * 60 * 60);
+	timer = setTimeout(displayNotification, 1000 * 60 * 60);
 	setNextBreak(1000 * 60 * 60);
 	log("Skipping break for an hour");
 }
@@ -132,14 +132,14 @@ function skipFor4Hours()
 	closeNotification();
 	statistics.hourSkips4 = parseInt(statistics.hourSkips4) + 1;
 	updateStatistics();
-	timer = setTimeout("displayNotification()", 1000 * 60 * 60 * 4);
+	timer = setTimeout(displayNotification, 1000 * 60 * 60 * 4);
 	setNextBreak(1000 * 60 * 60 * 4);
 	log("Skipping break for 4 hours");
 }
 
 function doBreak()
 {
-	timer = setTimeout("waitAndClose()", 1000 * breakTime);
+	timer = setTimeout(waitAndClose, 1000 * breakTime);
 	log("Doing a break");
 }
 
@@ -156,7 +156,7 @@ function waitAndClose()
 
 function waitForNext()
 {
-	timer = setTimeout("displayNotification()", 1000 * workTime);
+	timer = setTimeout(displayNotification, 1000 * workTime);
 	setNextBreak(1000 * workTime);
 	log("Waiting for next break");
     chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
