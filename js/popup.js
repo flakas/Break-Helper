@@ -10,7 +10,8 @@ function drawTimer() {
     var nextBreak = backgroundPage.nextBreak,
         timer = $("#timer"),
         minutes,
-        seconds;
+        seconds,
+        timerLeft;
     timerLeft = Math.round((nextBreak - backgroundPage.getCurrentTimestamp()) / 1000);
     if (timerLeft >= 0) {
         seconds = timerLeft % 60;
@@ -34,7 +35,7 @@ function reset_timer() {
 
 function stop_timer() {
     "use strict";
-    backgroundPage.stop_timer();
+    backgroundPage.stopTimer();
 }
 
 function start_timer() {

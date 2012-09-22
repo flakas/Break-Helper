@@ -61,8 +61,8 @@ function drawTimer() {
         seconds;
     timerLeft -= 1;
     if (timerLeft <= 0) {
-        if (backgroundPage.settings.playSound === 1) {
-            playSound('beep.mp3');
+        if (parseInt(backgroundPage.settings.playSound, 10) === 1) {
+            backgroundPage.playSound('notification.wav');
         }
         timer.html('Finished!');
     } else {
@@ -78,10 +78,4 @@ function drawTimer() {
 
     }
     setTimeout(drawTimer, 1000);
-}
-function playSound ( url ) {
-    //$("body").append("<embed src=\""+url+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" width=\"0\" height=\"0\">");
-    $("body").append("<audio src=\"" + url + "\" autoplay=\"autoplay\" style=\"width:0;height:0;\"></audio>");
-    //$("#sound").attr('src', url);
-    //document.sound.play();
 }
