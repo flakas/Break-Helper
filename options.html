@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<title>Break Helper Extension Options</title>
-		<link href="style.css" type="text/css" rel="stylesheet" />
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/options.js"></script>
-		<style type="text/css">
-		body { background: #EEE; background-image: none; }
-		</style>
-	</head>
-<body>
-<div id="header"><img src="icon.png" class="icon"/><h1>Break helper options</h1></div>
-<div class="content">
-	<div id="status"></div>
-	<p>
-		<label for="ruleTable">Rule:</label>
-		<table id="ruleTable">
-			<tr>
-				<td><input type="radio" id="rule" name="rule" value="20-20-20" /> <b>20-20-20</b></td>
-				<td>every 20 minutes look at an object at least 20 feet (~6 meters) away for 20 seconds</td>
-			</tr>
-			<tr>
-				<td><input type="radio" id="rule" name="rule" value="50-10" /> <b>50-10</b></td>
-				<td>take a 10 minute break every 50 minutes</td>
-			</tr>
-			<tr>
-				<td><input type="radio" id="rule" name="rule" value="pomodoro" /> <b>Pomodoro</b></td>
-				<td>25 minutes of work, 5 minutes of break time. More information can be found here: <a href="http://www.pomodorotechnique.com/" target="_blank">pomodorotechnique.com</a></td>
-			</tr>		
-			<tr>
-				<td><input type="radio" id="rule" name="rule" value="custom" /> <b>Custom</b></td>
-				<td>define custom time intervals</td>
-			</tr>
-		</table>
-	</p>
-	<p>
-		<div id="customForm">
-			<label for="customTimeTable">Custom time:</label>
-			<table id="customTimeTable">
-				<tr>
-					<td>Work time</td>
-					<td><input type="text" id="workTime" name="workTime" /> seconds</td>
-				</tr>
-				<tr>
-					<td>Break time</td>
-					<td><input type="text" id="breakTime" name="breakTime" /> seconds</td>
-				</tr>
-			</table>
-		</div>
-	</p>
-	<p>
-		<label for="playSound">Play sound when break is finished:</label>
-		<input type="radio" name="playSound" value="1" /> Yes
-		<input type="radio" name="playSound" value="0" /> No
-	</p>
-	<p>
-		<input type="button" id="apply" value="Apply" />
-	</p>
-</div>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <title>Break Helper Extension Options</title>
+        <link href="style.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/options.js"></script>
+        <style type="text/css">
+            body { background: #EEE; background-image: none; }
+        </style>
+    </head>
+    <body>
+        <div id="header"><img src="icon.png" class="icon"/><h1>Break helper options</h1></div>
+        <div class="content">
+            <div id="status"></div>
+            <p>
+            <label for="ruleTable">Rule:</label>
+            <table id="ruleTable">
+                <tr>
+                    <td><input type="radio" id="rule" name="rule" value="20-20-20" /> <b>20-20-20</b></td>
+                    <td>every 20 minutes look at an object at least 20 feet (~6 meters) away for 20 seconds</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="rule" name="rule" value="50-10" /> <b>50-10</b></td>
+                    <td>take a 10 minute break every 50 minutes</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" id="rule" name="rule" value="pomodoro" /> <b>Pomodoro</b></td>
+                    <td>25 minutes of work, 5 minutes of break time. More information can be found here: <a href="http://www.pomodorotechnique.com/" target="_blank">pomodorotechnique.com</a></td>
+                </tr>		
+                <tr>
+                    <td><input type="radio" id="rule" name="rule" value="custom" /> <b>Custom</b></td>
+                    <td>define custom time intervals</td>
+                </tr>
+            </table>
+            </p>
+            <p>
+            <div id="customForm">
+                <label for="customTimeTable">Custom time:</label>
+                <table id="customTimeTable">
+                    <tr>
+                        <td>Work time</td>
+                        <td><input type="text" id="workTime" name="workTime" /> seconds</td>
+                    </tr>
+                    <tr>
+                        <td>Break time</td>
+                        <td><input type="text" id="breakTime" name="breakTime" /> seconds</td>
+                    </tr>
+                </table>
+            </div>
+            </p>
+            <p>
+            <label for="playSound">Play sound when break is finished:</label>
+            <input type="radio" name="playSound" value="1" /> Yes
+            <input type="radio" name="playSound" value="0" /> No
+            </p>
+            <p>
+            <input type="button" id="apply" value="Apply" />
+            </p>
+        </div>
+    </body>
 </html>

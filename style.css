@@ -1,108 +1,108 @@
 * {
-	/*margin:0;
-	padding:0;*/
+    /*margin:0;
+    padding:0;*/
 }
 
 body {
-	font-size:14px;
-	color:#666;
-	font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
-	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
-	text-shadow:1px 1px 0 white;
-	overflow-x:hidden;
-	margin: 5px;
+    font-size:14px;
+    color:#666;
+    font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
+    text-shadow:1px 1px 0 white;
+    overflow-x:hidden;
+    margin: 5px;
 }
 
 a, a:hover, a:active, a:visited {
-	color: #000;
-	text-decoration: underline;
+    color: #000;
+    text-decoration: underline;
 }
 
 p {
-	font-size: 1em;
+    font-size: 1em;
 }
 h1 {
-	font-size: 1.5em;
-	font-weight: bold;
-	padding: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0;
 }
 #header {
-	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
-	height: 30px;
-	line-height: 18px;
-	margin:0 0 10px 0;
-	padding-left: 10px;
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
+    height: 30px;
+    line-height: 18px;
+    margin:0 0 10px 0;
+    padding-left: 10px;
 }
 .content {
-	margin: 0 20px;
-	font-size: 14px;
+    margin: 0 20px;
+    font-size: 14px;
 }
 input[type=button] {
-	padding: 5px;
-	background: #eee;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+    padding: 5px;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
 .icon {
-	float: left;
-	margin-right: 10px;
+    float: left;
+    margin-right: 10px;
 }
 
 .halfWide {
-	width: 49%;
+    width: 49%;
 }
 
 #timer {
-	font-size: 30px;
-	font-weight: bold;
-	color: #000000;
-	width: 100%;
-	text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000;
+    width: 100%;
+    text-align: center;
 }
 
 #customForm {
-	display: none;
+    display: none;
 }
 
 label {
-	float: left;
-	width: 150px;
-	margin-right: 5px;
+    float: left;
+    width: 150px;
+    margin-right: 5px;
 }
 
 td {
-	font-size: 1em;
-	padding: 3px;
+    font-size: 1em;
+    padding: 3px;
 }
 
 .iconPopup {
-	list-style-type: none;
-	padding-left: 1.5em;
+    list-style-type: none;
+    padding-left: 1.5em;
 }
 
 .iconInfo {
-	background: url(img/info.png) no-repeat;
+    background: url(img/info.png) no-repeat;
 }
 
 .iconPreferences {
-	background: url(img/preferences.png) no-repeat;
+    background: url(img/preferences.png) no-repeat;
 }
 
 .iconReset {
-	background: url(img/reset.png) no-repeat;
+    background: url(img/reset.png) no-repeat;
 }
 
 .popup {
-	list-style-type: none;
-	display: block;
+    list-style-type: none;
+    display: block;
 }
 
 #notificationContent h1 {
-	width: 100%;
-	text-align: center;
+    width: 100%;
+    text-align: center;
 }
