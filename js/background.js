@@ -74,10 +74,11 @@ if (typeof localStorage.statistics === "null") {
 } else {
     statistics = $.parseJSON(localStorage["statistics"]);
 }
-var notification, breakTime, workTime, rule, enableSound, iCloseNotification = 0, timer, nextBreak;
+var notification, breakTime, workTime, rule, enableSound, iCloseNotification = 0, timer, badgeTimer, nextBreak;
 resetTimes();
 $(document).ready(function () {
     waitForNext();
+    updateBadge();
 });
 
 function resetTimes() {
@@ -105,6 +106,9 @@ function displayNotification() {
 
 function closeNotification() {
     "use strict";
+    if (!notification) {
+        return;
+    }
     iCloseNotification = 1;
     notification.cancel();
     notification.onclose = null;
@@ -131,8 +135,7 @@ function skipForAnHour() {
     log("Skipping break for an hour");
 }
 
-function skipFor4Hours()
-{
+function skipFor4Hours() {
     closeNotification();
     statistics.hourSkips4 = parseInt(statistics.hourSkips4, 10) + 1;
     updateStatistics();
@@ -141,14 +144,12 @@ function skipFor4Hours()
     log("Skipping break for 4 hours");
 }
 
-function doBreak()
-{
+function doBreak() {
     timer = setTimeout(waitAndClose, 1000 * breakTime);
     log("Doing a break");
 }
 
-function waitAndClose()
-{
+function waitAndClose() {
     closeNotification();
     var currentTime = new Date();
     statistics.breaks = parseInt(statistics.breaks, 10) + 1;
@@ -158,31 +159,25 @@ function waitAndClose()
     log("Waiting and closing");
 }
 
-function waitForNext()
-{
+function waitForNext() {
     timer = setTimeout(displayNotification, 1000 * workTime);
     timerRunning = true;
     setNextBreak(1000 * workTime);
     log("Waiting for next break");
-    chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
-    chrome.browserAction.setBadgeText({text: '00:00'});
 }
 
-function updateSettings()
-{
+function updateSettings() {
     localStorage.settings = JSON.stringify(settings);
     log("Updating settings");
     reassignVariables();
 }
 
-function updateStatistics()
-{
+function updateStatistics() {
     localStorage.statistics = JSON.stringify(statistics);
     log("Updating statistics");
 }
 
-function log(msg)
-{
+function log(msg) {
     var d = new Date();
     var datetime = d.getFullYear() + '/' + d.getMonth() + '/' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
     console.log(datetime + ' ' + msg);
@@ -208,6 +203,7 @@ function resetTimer() {
 
 function stopTimer() {
     clearTimeout(timer);
+    setNextBreak(0);
     timerRunning = false;
 }
 
@@ -217,4 +213,48 @@ function getCurrentTimestamp() {
 
 function setNextBreak(time) {
     nextBreak = getCurrentTimestamp() + time;
+}
+
+function timeLeft() {
+    var left = nextBreak - getCurrentTimestamp();
+    return (left > 0) ? left : 0;
+}
+
+function updateBadgeClock() {
+    var left = Math.round(timeLeft() / 1000),
+        tempLeft,
+        h,
+        m,
+        s;
+    if (left > 0) {
+        h = Math.floor(left / 3600);
+        tempLeft = left % 3600;
+        s = tempLeft % 60;
+        m = (tempLeft - s) / 60;
+        if (left > 300) {
+            chrome.browserAction.setBadgeBackgroundColor({color : [0, 255, 0, 255]});
+        }
+
+        if (left <= 300 && left > 60) {
+            chrome.browserAction.setBadgeBackgroundColor({color : [255, 140, 0, 255]});
+        }
+
+        if (left <= 60) {
+            chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
+        }
+        chrome.browserAction.setBadgeText({text: m + ':' + s});
+
+    } else {
+        chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
+        chrome.browserAction.setBadgeText({text: '00:00'});
+    }
+}
+
+function updateBadge() {
+    setTimeout(updateBadge, 1000);
+    updateBadgeClock();
+}
+
+function playSound ( url ) {
+    (new Audio(url)).play();
 }

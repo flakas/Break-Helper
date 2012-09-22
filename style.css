@@ -26,6 +26,7 @@ h1 {
     font-weight: bold;
     padding: 0;
 }
+
 #header {
     background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#DDD));
     height: 30px;
@@ -33,10 +34,12 @@ h1 {
     margin:0 0 10px 0;
     padding-left: 10px;
 }
+
 .content {
     margin: 0 20px;
     font-size: 14px;
 }
+
 input[type=button] {
     padding: 5px;
     background: #eee;
@@ -95,6 +98,10 @@ td {
 
 .iconReset {
     background: url(img/reset.png) no-repeat;
+}
+
+.iconStop {
+    background: url(img/stop.png) no-repeat;
 }
 
 .popup {
