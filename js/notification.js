@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var backgroundPage = chrome.extension.getBackgroundPage();
     $("#takeBreak").click(function () {
+        backgroundPage._gaq.push(['_trackEvent', 'notification.button#takeBreak', 'clicked']);
         switch (backgroundPage.settings.rule) {
         case "20-20-20":
             $("#notificationContent").html("<h1>You're on a break</h1><p>Look at an object that is at least 20 feet away.</p><div id=\"timer\"></div>");
@@ -21,14 +22,17 @@ $(document).ready(function () {
 
     $("#skipBreak").click(function () {
         backgroundPage.skipBreak();
+        backgroundPage._gaq.push(['_trackEvent', 'notification.button#skipBreak', 'clicked']);
     });
 
     $("#skipForAnHour").click(function () {
         backgroundPage.skipForAnHour();
+        backgroundPage._gaq.push(['_trackEvent', 'notification.button#skipForAnHour', 'clicked']);
     });
 
     $("#skipFor4Hours").click(function () {
         backgroundPage.skipFor4Hours();
+        backgroundPage._gaq.push(['_trackEvent', 'notification.button#skipFor4Hours', 'clicked']);
     });
 
     switch (backgroundPage.settings.rule) {
