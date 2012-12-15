@@ -34,20 +34,13 @@ _gaq.push(['_trackPageview']);
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 
-if (typeof localStorage.settings === "null") {
+if (typeof localStorage.settings === "undefined") {
     settings = {
         "rule" : "pomodoro",
         "workTime" : rules.pomodoro.workTime,
         "breakTime" : rules.pomodoro.breakTime,
         "playSound" : 0
     };
-    if (typeof localStorage.rule !== "null") { //For backwards compatibility
-        settings.rule = localStorage["rule"];
-        if(localStorage["rule"] == "custom") {
-            rules["custom"].workTime = localStorage["workTime"];
-            rules["custom"].breakTime = localStorage["breakTime"];
-        }
-    }
     localStorage["settings"] = JSON.stringify(settings); //If there are no settings, create default values
 } else {
     settings = $.parseJSON(localStorage["settings"]);
@@ -57,7 +50,7 @@ if (typeof localStorage.settings === "null") {
     }
 }
 
-if (typeof localStorage.statistics === "null") {
+if (typeof localStorage.statistics === "undefined") {
     statistics = {
         "breaks" : 0,
         "skips" : 0,

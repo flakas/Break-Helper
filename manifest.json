@@ -1,5 +1,5 @@
 {
-    "manifest_version": 1,
+    "manifest_version": 2,
     "name": "Break Helper",
     "version": "1.4.1",
     "description": "Reminds you to take a break, because breaks are good for your health and productivity",
