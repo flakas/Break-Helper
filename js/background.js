@@ -1,6 +1,7 @@
 var settings,
     statistics,
     timerRunning = false,
+    fallback = false,
     rules = {
         "20-20-20": {
             "name" : "20-20-20",
@@ -97,13 +98,28 @@ function resetTimes() {
 
 function displayNotification() {
     "use strict";
-    notification = webkitNotifications.createHTMLNotification('notification.html');
+    try {
+        notification = webkitNotifications.createHTMLNotification('notification.html');
+    } catch (e) {
+        // Fall back to regular text notifications due to chrome deprecating HTML notifications
+        notification = webkitNotifications.createNotification(
+            'icon48.png',
+            'Break Helper',
+            "You've been working for quite a while, please take a break"
+        );
+        fallback = true;
+    }
     notification.onclose = function() {
         if (iCloseNotification === 0) {
+            stopTimer();
             skipBreak();
         }
     };
     notification.show();
+    // If using fallback notifications, treat the display as actual break
+    if (fallback) {
+        doBreak();
+    }
     log("Displaying notification");
 }
 
