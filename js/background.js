@@ -42,7 +42,7 @@ if (typeof localStorage.settings === "undefined") {
         "breakTime" : rules.pomodoro.breakTime,
         "playSound" : 0
     };
-    localStorage["settings"] = JSON.stringify(settings); //If there are no settings, create default values
+    localStorage.settings = JSON.stringify(settings); //If there are no settings, create default values
 } else {
     settings = $.parseJSON(localStorage["settings"]);
     if(settings.rule == "custom") {
@@ -98,42 +98,25 @@ function resetTimes() {
 
 function displayNotification() {
     "use strict";
-    try {
-        notification = webkitNotifications.createHTMLNotification('notification.html');
-    } catch (e) {
-        // Fall back to regular text notifications due to chrome deprecating HTML notifications
-        notification = webkitNotifications.createNotification(
-            'icon48.png',
-            'Break Helper',
-            "You've been working for quite a while, please take a break"
-        );
-        fallback = true;
-    }
-    notification.onclose = function() {
-        if (iCloseNotification === 0) {
-            stopTimer();
-            skipBreak();
-        }
-    };
-    notification.show();
-    // If using fallback notifications, treat the display as actual break
-    if (fallback) {
+    notification = chrome.notifications.create('bh-notification', {
+        type: 'basic',
+        title: 'Break Helper',
+        message: "You've been working for quite a while, please take a break",
+        iconUrl: 'icon48.png',
+    }, function (notificationId) {
         doBreak();
-    }
+    });
     log("Displaying notification");
 }
 
 function closeNotification() {
     "use strict";
-    if (!notification) {
-        return;
-    }
     iCloseNotification = 1;
-    notification.cancel();
-    notification.onclose = null;
-    notification = null;
-    log("Closing notification");
-    iCloseNotification = 0;
+    chrome.notifications.clear('bh-notification', function (hasCleared) {
+        notification = null;
+        log("Closing notification: " + hasCleared);
+        iCloseNotification = 0;
+    });
 }
 
 function skipBreak() {
