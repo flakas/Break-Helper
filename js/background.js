@@ -78,9 +78,10 @@ if (typeof localStorage.statistics === "undefined") {
 } else {
     statistics = $.parseJSON(localStorage["statistics"]);
 }
-var notification, breakTime, workTime, rule, enableSound, iCloseNotification = 0, timer, badgeTimer, nextBreak;
+var notification, breakTime, workTime, rule, enableSound, iCloseNotification = 0, timer, nextBreak, breakTimeLeft;
 resetTimes();
 $(document).ready(function () {
+    chrome.notifications.onButtonClicked.addListener(handleNotificationInteraction);
     waitForNext();
     updateBadge();
 });
@@ -101,12 +102,26 @@ function displayNotification() {
     notification = chrome.notifications.create('bh-notification', {
         type: 'basic',
         title: 'Break Helper',
-        message: "You've been working for quite a while, please take a break",
-        iconUrl: 'icon48.png',
-    }, function (notificationId) {
-        doBreak();
+        message: "You've been working for quite a while, please take a break.",
+        iconUrl: 'icon128.png',
+        buttons: [
+          { title: "Take a break" },
+          { title: "Skip this break" }
+        ],
+        requireInteraction: true,
     });
     log("Displaying notification");
+}
+
+function handleNotificationInteraction(notificationId, buttonIndex) {
+  if (notificationId === 'bh-notification') {
+    if (buttonIndex === 0) {
+      doBreak();
+    } else if (buttonIndex === 1) {
+      skipBreak();
+      closeNotification();
+    }
+  }
 }
 
 function closeNotification() {
@@ -147,9 +162,26 @@ function skipFor4Hours() {
 }
 
 function doBreak() {
+    breakTimeLeft = breakTime;
     timer = setTimeout(waitAndClose, 1000 * breakTime);
+    updateBreakNotificationTimer();
     log("Doing a break");
 }
+
+function updateBreakNotificationTimer() {
+  if (breakTimeLeft <= 0) return;
+  breakTimeLeft -= 1;
+  var progress = breakTimeLeft / breakTime * 100;
+  chrome.notifications.update('bh-notification', {
+    type: 'progress',
+    title: 'Break Helper',
+    message: "You're on a break.",
+    iconUrl: 'icon128.png',
+    buttons: [],
+    progress: progress
+  });
+  setTimeout(updateBreakNotificationTimer, 1000);
+};
 
 function waitAndClose() {
     closeNotification();
