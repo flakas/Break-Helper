@@ -78,7 +78,7 @@ if (typeof localStorage.statistics === "undefined") {
 } else {
     statistics = $.parseJSON(localStorage["statistics"]);
 }
-var notification, breakTime, workTime, rule, enableSound, iCloseNotification = 0, timer, nextBreak, breakTimeLeft;
+var notification, breakTime, workTime, rule, iCloseNotification = 0, timer, nextBreak, breakTimeLeft;
 resetTimes();
 $(document).ready(function () {
     chrome.notifications.onButtonClicked.addListener(handleNotificationInteraction);
@@ -111,6 +111,7 @@ function displayNotification() {
         ],
         requireInteraction: true,
     });
+    doSoundNotification();
     log("Displaying notification");
 }
 
@@ -298,6 +299,12 @@ function updateBadge() {
 
 function playSound ( url ) {
     (new Audio(url)).play();
+}
+
+function doSoundNotification() {
+  if (settings.playSound) {
+    playSound('notification.mp3');
+  }
 }
 
 function secondsToClock(leftSeconds) {
