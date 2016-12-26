@@ -82,6 +82,7 @@ var notification, breakTime, workTime, rule, enableSound, iCloseNotification = 0
 resetTimes();
 $(document).ready(function () {
     chrome.notifications.onButtonClicked.addListener(handleNotificationInteraction);
+    chrome.notifications.onClosed.addListener(handleNotificationClosed);
     waitForNext();
     updateBadge();
 });
@@ -121,6 +122,12 @@ function handleNotificationInteraction(notificationId, buttonIndex) {
       skipBreak();
       closeNotification();
     }
+  }
+}
+
+function handleNotificationClosed(notificationId, byUser) {
+  if (notificationId === 'bh-notification' && byUser && breakTimeLeft === 0) {
+    skipBreak();
   }
 }
 
@@ -175,7 +182,7 @@ function updateBreakNotificationTimer() {
   chrome.notifications.update('bh-notification', {
     type: 'progress',
     title: 'Break Helper',
-    message: "You're on a break.",
+    message: "You're on a break ($%1s).".replace("$%1s", secondsToClock(breakTimeLeft)),
     iconUrl: 'icon128.png',
     buttons: [],
     progress: progress
@@ -276,7 +283,7 @@ function updateBadgeClock() {
         if (left <= 60) {
             chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
         }
-        chrome.browserAction.setBadgeText({text: m + ':' + s});
+        chrome.browserAction.setBadgeText({text: m.pad(2) + ':' + s.pad(2)});
 
     } else {
         chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
@@ -291,4 +298,19 @@ function updateBadge() {
 
 function playSound ( url ) {
     (new Audio(url)).play();
+}
+
+function secondsToClock(leftSeconds) {
+    var h, m, s, tempLeft;
+    h = Math.floor(leftSeconds / 3600);
+    tempLeft = leftSeconds % 3600;
+    s = tempLeft % 60;
+    m = (tempLeft - s) / 60;
+
+    return h.pad(2) + ":" + m.pad(2) + ":" + s.pad(2);
+}
+Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
 }
