@@ -186,7 +186,7 @@ function updateBreakNotificationTimer() {
     message: "You're on a break ($%1s).".replace("$%1s", secondsToClock(breakTimeLeft)),
     iconUrl: 'icon128.png',
     buttons: [],
-    progress: progress
+    progress: Math.round(progress)
   });
   setTimeout(updateBreakNotificationTimer, 1000);
 };
