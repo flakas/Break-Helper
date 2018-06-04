@@ -23,7 +23,6 @@ $(document).ready(function () {
         setTimeout(function () {
             $("#status").hide("fast");
         }, 2000);
-        backgroundPage._gaq.push(['_trackEvent', 'settings:' + backgroundPage.settings.rule + ' ' + backgroundPage.settings.workTime + ' ' + backgroundPage.settings.breakTime + ' ' + backgroundPage.settings.playSound, 'updated']);
     });
 });
 

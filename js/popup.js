@@ -30,12 +30,10 @@ function drawTimer() {
 
 function reset_timer() {
     "use strict";
-    backgroundPage._gaq.push(['_trackEvent', 'button-reset', 'clicked']);
     backgroundPage.resetTimer();
 }
 
 function stop_timer() {
     "use strict";
-    backgroundPage._gaq.push(['_trackEvent', 'button-stop', 'clicked']);
     backgroundPage.stopTimer();
 }
