@@ -264,7 +264,7 @@ function updateBadgeClock() {
         s = tempLeft % 60;
         m = (tempLeft - s) / 60;
         if (left > 300) {
-            chrome.browserAction.setBadgeBackgroundColor({color : [0, 255, 0, 255]});
+            chrome.browserAction.setBadgeBackgroundColor({color : [66, 134, 244, 255]});
         }
 
         if (left <= 300 && left > 60) {
