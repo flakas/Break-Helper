@@ -1,5 +1,11 @@
-var settings,
-    statistics,
+import { LocalStorage } from './storage_engines/localStorage.js'
+import { Store } from './store.js'
+import { Settings } from './settings.js'
+
+let store = new Store(new LocalStorage())
+let settings = new Settings(store)
+
+var statistics,
     timerRunning = false,
     fallback = false,
     rules = {
@@ -25,20 +31,9 @@ var settings,
         }
     };
 
-if (typeof localStorage.settings === "undefined") {
-    settings = {
-        "rule" : "pomodoro",
-        "workTime" : rules.pomodoro.workTime,
-        "breakTime" : rules.pomodoro.breakTime,
-        "playSound" : 0
-    };
-    localStorage.settings = JSON.stringify(settings); //If there are no settings, create default values
-} else {
-    settings = $.parseJSON(localStorage["settings"]);
-    if(settings.rule == "custom") {
-        rules["custom"].workTime = settings.workTime;
-        rules["custom"].breakTime = settings.breakTime;
-    }
+if(settings.get('rule') == "custom") {
+    rules["custom"].workTime = settings.get('workTime');
+    rules["custom"].breakTime = settings.get('breakTime');
 }
 
 if (typeof localStorage.statistics === "undefined") {
@@ -79,12 +74,12 @@ $(document).ready(function () {
 
 function resetTimes() {
     "use strict";
-    if (settings.rule === "custom") {
-        breakTime = settings.breakTime;
-        workTime = settings.workTime;
+    if (settings.get('rule') === "custom") {
+        breakTime = settings.get('breakTime');
+        workTime = settings.get('workTime');
     } else {
-        breakTime = rules[settings.rule].breakTime;
-        workTime = rules[settings.rule].workTime;
+        breakTime = rules[settings.get('rule')].breakTime;
+        workTime = rules[settings.get('rule')].workTime;
     }
 }
 
@@ -292,7 +287,7 @@ function playSound ( url ) {
 }
 
 function doSoundNotification() {
-  if (settings.playSound) {
+  if (settings.get('playSound')) {
     playSound('notification.mp3');
   }
 }
