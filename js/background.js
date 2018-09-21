@@ -1,6 +1,7 @@
 import { LocalStorage } from './storage_engines/localStorage.js'
 import { Store } from './store.js'
 import { Settings } from './settings.js'
+import { Sound } from './sound.js'
 
 let store = new Store(new LocalStorage())
 let settings = new Settings(store)
@@ -136,24 +137,6 @@ function skipBreak() {
     log("Skipping break");
 }
 
-function skipForAnHour() {
-    closeNotification();
-    statistics.hourSkips1 = parseInt(statistics.hourSkips1, 10) + 1;
-    updateStatistics();
-    timer = setTimeout(displayNotification, 1000 * 60 * 60);
-    setNextBreak(1000 * 60 * 60);
-    log("Skipping break for an hour");
-}
-
-function skipFor4Hours() {
-    closeNotification();
-    statistics.hourSkips4 = parseInt(statistics.hourSkips4, 10) + 1;
-    updateStatistics();
-    timer = setTimeout(displayNotification, 1000 * 60 * 60 * 4);
-    setNextBreak(1000 * 60 * 60 * 4);
-    log("Skipping break for 4 hours");
-}
-
 function doBreak() {
     breakTimeLeft = breakTime;
     timer = setTimeout(waitAndClose, 1000 * breakTime);
@@ -282,13 +265,9 @@ function updateBadge() {
     updateBadgeClock();
 }
 
-function playSound ( url ) {
-    (new Audio(url)).play();
-}
-
 function doSoundNotification() {
   if (settings.get('playSound')) {
-    playSound('notification.mp3');
+    (new Sound()).play()
   }
 }
 
