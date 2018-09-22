@@ -1,8 +1,11 @@
 export class Timer {
 
   constructor(callback) {
+    if (typeof callback !== 'function') { throw "Callback expected to be a function" }
+
     this.callback = callback
     this.timeLeft = 0
+    this.timer = undefined
     this.status = 'stopped'
   }
 
@@ -17,7 +20,7 @@ export class Timer {
 
     this.timeLeft = timeLeft
     this.status = "started"
-    this.timer = setInterval(this.tick, 1000)
+    this.timer = setInterval(this.tick.bind(this), 1000)
   }
 
   stop() {
