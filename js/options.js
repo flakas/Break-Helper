@@ -11,12 +11,11 @@ $(document).ready(function () {
     });
 
     $("#apply").click(function () {
-        var backgroundPage = chrome.extension.getBackgroundPage();
-        backgroundPage.settings.rule = $("input[name=rule]:checked").val();
-        backgroundPage.settings.workTime = $("#workTime").val();
-        backgroundPage.settings.breakTime = $("#breakTime").val();
-        backgroundPage.settings.playSound = $("input[name=playSound]:checked").val();
-        backgroundPage.updateSettings();
+        var backgroundPage = chrome.extension.getBackgroundPage()
+        backgroundPage.app.settings.set('rule', $("input[name=rule]:checked").val())
+        backgroundPage.app.settings.set('workTime', $("#workTime").val())
+        backgroundPage.app.settings.set('breakTime', $("#breakTime").val())
+        backgroundPage.app.settings.set("playSound", $("input[name=playSound]:checked").val())
         $("#status").hide("fast");
         $("#status").html('<font color="green">Options were successfuly applied.</font>');
         $("#status").show("fast");
@@ -29,8 +28,10 @@ $(document).ready(function () {
 // Restores select box state to saved value from localStorage.
 function restore_options() {
     var backgroundPage = chrome.extension.getBackgroundPage(),
-        rule = backgroundPage.settings.rule,
-        playSound = backgroundPage.settings.playSound;
+        rule = backgroundPage.app.settings.get('rule'),
+        playSound = backgroundPage.app.settings.get('playSound'),
+        breakTime = backgroundPage.app.settings.get('breakTime'),
+        workTime = backgroundPage.app.settings.get('workTime');
 
     if (rule) {
         $("input[name=rule][value=" + rule + "]").attr('checked', true);
@@ -41,11 +42,11 @@ function restore_options() {
     if (playSound) {
         $("input[name=playSound][value=" + playSound + "]").attr('checked', true);
     }
-    if (backgroundPage.settings.breakTime) {
-        $("#breakTime").val(backgroundPage.settings.breakTime);
+    if (breakTime) {
+        $("#breakTime").val(breakTime);
     }
-    if (backgroundPage.settings.workTime) {
-        $("#workTime").val(backgroundPage.settings.workTime);
+    if (workTime) {
+        $("#workTime").val(workTime);
     }
 
 }

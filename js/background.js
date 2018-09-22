@@ -6,6 +6,7 @@ import { App } from './app.js'
 const store = new Store(new LocalStorage())
 const settings = new Settings(store)
 
-const app = new App(settings)
+export const app = new App(settings)
 
 app.start()
+window.app = app
