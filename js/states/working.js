@@ -9,6 +9,7 @@ export class Working {
     this.app = app
     this.timer = new Timer(this.tick.bind(this))
     this.badge = new Badge()
+    this.name = 'working'
   }
 
   start() {

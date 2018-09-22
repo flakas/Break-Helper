@@ -13,6 +13,7 @@ export class Waiting {
     this.badge = new Badge()
     this.waitTimeout = 60 // seconds
     this.notification = new WhetherToGoOnBreak(this.waitTimeout, this.break.bind(this), this.work.bind(this))
+    this.name = 'waiting'
   }
 
   start() {

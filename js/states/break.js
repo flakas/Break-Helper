@@ -9,6 +9,7 @@ export class Break {
     this.app = app
     this.timer = new Timer(this.tick.bind(this))
     this.badge = new Badge()
+    this.name = 'break'
   }
 
   start() {

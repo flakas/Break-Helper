@@ -8,6 +8,7 @@ export class Stopped {
     this.app = app
     this.timer = new Timer(null)
     this.badge = new Badge()
+    this.name = 'stopped'
   }
 
   start() {
