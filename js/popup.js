@@ -1,18 +1,17 @@
 var backgroundPage = chrome.extension.getBackgroundPage();
 $(document).ready(function () {
-  //drawTimer();
+  setInterval(drawTimer, 1000);
+  drawTimer();
   $('.iconReset').bind('click', reset_timer);
   $('.iconStop').bind('click', stop_timer);
 });
 
 function drawTimer() {
   'use strict';
-  var nextBreak = backgroundPage.nextBreak,
+  var timerLeft = backgroundPage.app.state.timer.timeLeft,
     timer = $('#timer'),
     minutes,
-    seconds,
-    timerLeft;
-  timerLeft = Math.round((nextBreak - backgroundPage.getCurrentTimestamp()) / 1000);
+    seconds;
   if (timerLeft >= 0) {
     seconds = timerLeft % 60;
     minutes = (timerLeft - seconds) / 60;
@@ -25,7 +24,6 @@ function drawTimer() {
     timer.html(minutes + ':' + seconds);
 
   }
-  setTimeout(drawTimer, 1000);
 }
 
 function reset_timer() {
