@@ -23,7 +23,7 @@ export class Waiting {
   }
 
   tick(timerState, timeLeft) {
-    if (timerState === "stopped") {
+    if (timerState === 'stopped') {
       // Default to going on a break if timeout ends
       this.break()
     } else {

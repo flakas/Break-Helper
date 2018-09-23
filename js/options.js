@@ -1,32 +1,32 @@
 $(document).ready(function () {
   restore_options();
 
-  $("input[name=rule]").change(function () {
+  $('input[name=rule]').change(function () {
 
-    if ($("input[name=rule]:checked").val() === "custom") {
-      $("#customForm").show("fast");
+    if ($('input[name=rule]:checked').val() === 'custom') {
+      $('#customForm').show('fast');
     } else {
-      $("#customForm").hide("fast");
+      $('#customForm').hide('fast');
     }
   });
 
-  $("#apply").click(function () {
+  $('#apply').click(function () {
     var backgroundPage = chrome.extension.getBackgroundPage()
-    let workTime = $("#workTime").val()
-    let breakTime = $("#breakTime").val()
-    let rule = $("input[name=rule]:checked").val()
+    let workTime = $('#workTime').val()
+    let breakTime = $('#breakTime').val()
+    let rule = $('input[name=rule]:checked').val()
     backgroundPage.app.settings.set('rule', rule)
-    if (rule !== "custom") {
+    if (rule !== 'custom') {
 
     }
-    backgroundPage.app.settings.set('workTime', $("#workTime").val())
-    backgroundPage.app.settings.set('breakTime', $("#breakTime").val())
-    backgroundPage.app.settings.set("playSound", $("input[name=playSound]:checked").val())
-    $("#status").hide("fast");
-    $("#status").html('<font color="green">Options were successfuly applied.</font>');
-    $("#status").show("fast");
+    backgroundPage.app.settings.set('workTime', $('#workTime').val())
+    backgroundPage.app.settings.set('breakTime', $('#breakTime').val())
+    backgroundPage.app.settings.set('playSound', $('input[name=playSound]:checked').val())
+    $('#status').hide('fast');
+    $('#status').html('<font color='green'>Options were successfuly applied.</font>');
+    $('#status').show('fast');
     setTimeout(function () {
-      $("#status").hide("fast");
+      $('#status').hide('fast');
     }, 2000);
   });
 });
@@ -40,19 +40,19 @@ function restore_options() {
     workTime = backgroundPage.app.settings.get('workTime');
 
   if (rule) {
-    $("input[name=rule][value=" + rule + "]").attr('checked', true);
-    if (rule === "custom") {
-      $("#customForm").show("fast");
+    $('input[name=rule][value=' + rule + ']').attr('checked', true);
+    if (rule === 'custom') {
+      $('#customForm').show('fast');
     }
   }
   if (playSound) {
-    $("input[name=playSound][value=" + playSound + "]").attr('checked', true);
+    $('input[name=playSound][value=' + playSound + ']').attr('checked', true);
   }
   if (breakTime) {
-    $("#breakTime").val(breakTime);
+    $('#breakTime').val(breakTime);
   }
   if (workTime) {
-    $("#workTime").val(workTime);
+    $('#workTime').val(workTime);
   }
 
 }

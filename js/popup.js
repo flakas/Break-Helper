@@ -6,9 +6,9 @@ $(document).ready(function () {
 });
 
 function drawTimer() {
-  "use strict";
+  'use strict';
   var nextBreak = backgroundPage.nextBreak,
-    timer = $("#timer"),
+    timer = $('#timer'),
     minutes,
     seconds,
     timerLeft;
@@ -29,11 +29,11 @@ function drawTimer() {
 }
 
 function reset_timer() {
-  "use strict";
+  'use strict';
   backgroundPage.resetTimer();
 }
 
 function stop_timer() {
-  "use strict";
+  'use strict';
   backgroundPage.stopTimer();
 }

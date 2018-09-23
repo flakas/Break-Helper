@@ -17,7 +17,7 @@ export class Notification {
     return {
       type: 'basic',
       title: 'Break Helper',
-      message: "Something went wrong in Break Helper!",
+      message: 'Something went wrong in Break Helper!',
       iconUrl: 'icon128.png',
       buttons: [
       ],

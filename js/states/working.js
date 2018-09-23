@@ -20,7 +20,7 @@ export class Working {
 
   tick(timerState, timeLeft) {
     this.badge.tick(timeLeft)
-    if (timerState === "stopped") {
+    if (timerState === 'stopped') {
       this.wait()
     } else {
       // handle tick, update interfaces

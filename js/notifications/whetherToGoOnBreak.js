@@ -23,8 +23,8 @@ export class WhetherToGoOnBreak extends Notification {
       message: "You've been working for quite a while, please take a break.",
       iconUrl: 'icon128.png',
       buttons: [
-        { title: "Take a break" },
-        { title: "Skip this break" }
+        { title: 'Take a break' },
+        { title: 'Skip this break' }
       ],
       requireInteraction: true,
       progress: this.getProgress()

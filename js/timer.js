@@ -1,7 +1,7 @@
 export class Timer {
 
   constructor(callback) {
-    if (typeof callback !== 'function') { throw "Callback expected to be a function" }
+    if (typeof callback !== 'function') { throw 'Callback expected to be a function' }
 
     this.callback = callback
     this.timeLeft = 0
@@ -11,15 +11,15 @@ export class Timer {
 
   start(timeLeft) {
     if (this.status != 'stopped') {
-      throw "The timer needs to be stopped first, currently it is " + this.status
+      throw 'The timer needs to be stopped first, currently it is ' + this.status
     }
 
     if (typeof timeLeft !== 'number' || timeLeft <= 0) {
-      throw "The timer has to be a positive integer, received: " + timeLeft
+      throw 'The timer has to be a positive integer, received: ' + timeLeft
     }
 
     this.timeLeft = timeLeft
-    this.status = "started"
+    this.status = 'started'
     this.timer = setInterval(this.tick.bind(this), 1000)
   }
 
@@ -27,7 +27,7 @@ export class Timer {
     clearInterval(this.timer)
     this.timer = undefined
     this.timeLeft = 0
-    this.status = "stopped"
+    this.status = 'stopped'
   }
 
   tick() {
