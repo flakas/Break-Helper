@@ -6,7 +6,7 @@ export class Stopped {
 
   constructor(app) {
     this.app = app
-    this.timer = new Timer(null)
+    this.timer = new Timer(() => false)
     this.badge = new Badge()
     this.name = 'stopped'
   }

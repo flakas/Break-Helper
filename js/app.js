@@ -1,4 +1,5 @@
 import { Working } from './states/working.js'
+import { Stopped } from './states/stopped.js'
 
 export class App {
   constructor(settings) {
@@ -8,6 +9,14 @@ export class App {
 
   start() {
     this.changeState(new Working(this))
+  }
+
+  restart() {
+    this.changeState(new Working(this))
+  }
+
+  stop() {
+    this.changeState(new Stopped(this))
   }
 
   changeState(newState) {

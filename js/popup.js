@@ -1,6 +1,6 @@
 var backgroundPage = chrome.extension.getBackgroundPage();
 $(document).ready(function () {
-  drawTimer();
+  //drawTimer();
   $('.iconReset').bind('click', reset_timer);
   $('.iconStop').bind('click', stop_timer);
 });
@@ -30,10 +30,10 @@ function drawTimer() {
 
 function reset_timer() {
   'use strict';
-  backgroundPage.resetTimer();
+  backgroundPage.app.restart();
 }
 
 function stop_timer() {
   'use strict';
-  backgroundPage.stopTimer();
+  backgroundPage.app.stop();
 }
