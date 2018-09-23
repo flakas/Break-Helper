@@ -23,11 +23,14 @@ $(document).ready(function () {
     backgroundPage.app.settings.set('breakTime', $('#breakTime').val())
     backgroundPage.app.settings.set('playSound', $('input[name=playSound]:checked').val())
     $('#status').hide('fast');
-    $('#status').html('<font color='green'>Options were successfuly applied.</font>');
+    $('#status').html("<font color='green'>Options were successfuly applied.</font>");
     $('#status').show('fast');
     setTimeout(function () {
       $('#status').hide('fast');
     }, 2000);
+
+    // Apply new settings
+    backgroundPage.app.restart()
   });
 });
 
