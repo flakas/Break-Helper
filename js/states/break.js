@@ -2,6 +2,7 @@ import { Timer } from '../timer.js'
 import { Badge } from '../badge.js'
 import { Working } from './working.js'
 import { Stopped } from './stopped.js'
+import { Sound } from '../sound.js'
 
 export class Break {
 
@@ -20,6 +21,7 @@ export class Break {
 
   tick(timerState, timeLeft) {
     if (timerState === "stopped") {
+      this._playSoundNotification()
       this.work()
     } else {
       // handle tick, update interfaces
@@ -46,5 +48,9 @@ export class Break {
     this.badge = undefined
   }
 
+  _playSoundNotification() {
+    if (parseInt(this.app.settings.get('playSound'), 10)) {
+      (new Sound()).play()
+    }
+  }
 }
-
