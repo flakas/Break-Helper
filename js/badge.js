@@ -8,24 +8,20 @@ export class Badge {
   }
 
   updateBadgeClock(timeLeft) {
-    var left = timeLeft,
-      tempLeft,
-      h,
-      m,
-      s;
-
-    this.setBadgeColor(left)
-    this.setBadgeText(this.prettyPrintTime(left))
+    this.setBadgeColor(timeLeft)
+    this.setBadgeText(this.prettyPrintTime(timeLeft))
   }
 
   setBadgeColor(timeLeft) {
+    let color
     if (timeLeft > 300) {
-      chrome.browserAction.setBadgeBackgroundColor({color : [66, 134, 244, 255]});
+      color = [66, 134, 244, 255]
     } else if (timeLeft > 60) {
-      chrome.browserAction.setBadgeBackgroundColor({color : [255, 140, 0, 255]});
+      color = [255, 140, 0, 255]
     } else {
-      chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
+      color = [255, 0, 0, 255]
     }
+    chrome.browserAction.setBadgeBackgroundColor({color: color})
   }
 
   setBadgeText(text) {
