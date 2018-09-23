@@ -8,6 +8,6 @@ export class Sound {
   }
 
   _playSound(url) {
-      (new Audio(url)).play();
+    (new Audio(url)).play();
   }
 }

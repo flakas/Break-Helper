@@ -40,10 +40,10 @@ export class Settings {
 
   _getDefaults() {
     return {
-        'rule' : 'pomodoro',
-        'workTime' : 25 * 60, // 25 minutes
-        'breakTime' : 5 * 60,
-        'playSound' : 0
+      'rule' : 'pomodoro',
+      'workTime' : 25 * 60, // 25 minutes
+      'breakTime' : 5 * 60,
+      'playSound' : 0
     };
   }
   _getRules() {
@@ -53,21 +53,21 @@ export class Settings {
         'workTime' : 20 * 60, // 20 minutes
         'breakTime' : 20      // 20 seconds
       },
-        '50-10': {
-          'name' : '50-10',
-          'workTime' : 50 * 60, // 50 minutes
-          'breakTime' : 10 * 60 // 10 minutes
-        },
-        'pomodoro': {
-          'name' : 'Pomodoro',
-          'workTime' : 25 * 60, // 25 minutes
-          'breakTime' : 5 * 60  // 5 minutes
-        },
-        'custom': {
-          'name' : 'Custom',
-          'workTime' : 20 * 60, // Default 20 minutes
-          'breakTime' : 20  // Default 20 seconds
-        }
+      '50-10': {
+        'name' : '50-10',
+        'workTime' : 50 * 60, // 50 minutes
+        'breakTime' : 10 * 60 // 10 minutes
+      },
+      'pomodoro': {
+        'name' : 'Pomodoro',
+        'workTime' : 25 * 60, // 25 minutes
+        'breakTime' : 5 * 60  // 5 minutes
+      },
+      'custom': {
+        'name' : 'Custom',
+        'workTime' : 20 * 60, // Default 20 minutes
+        'breakTime' : 20  // Default 20 seconds
+      }
     }
   }
 }
