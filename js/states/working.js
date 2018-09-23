@@ -13,7 +13,7 @@ export class Working {
   }
 
   start() {
-    const timeLeft = parseInt(this.app.settings.get('workTime'), 10)
+    const timeLeft = parseInt(this.app.settings.getActiveRule().workTime, 10)
     this.timer.start(timeLeft)
     this.badge.show(timeLeft)
   }

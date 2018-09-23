@@ -12,7 +12,13 @@ $(document).ready(function () {
 
     $("#apply").click(function () {
         var backgroundPage = chrome.extension.getBackgroundPage()
-        backgroundPage.app.settings.set('rule', $("input[name=rule]:checked").val())
+        let workTime = $("#workTime").val()
+        let breakTime = $("#breakTime").val()
+        let rule = $("input[name=rule]:checked").val()
+        backgroundPage.app.settings.set('rule', rule)
+        if (rule !== "custom") {
+
+        }
         backgroundPage.app.settings.set('workTime', $("#workTime").val())
         backgroundPage.app.settings.set('breakTime', $("#breakTime").val())
         backgroundPage.app.settings.set("playSound", $("input[name=playSound]:checked").val())

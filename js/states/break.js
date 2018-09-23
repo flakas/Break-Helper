@@ -13,7 +13,7 @@ export class Break {
   }
 
   start() {
-    const timeLeft = parseInt(this.app.settings.get('breakTime'), 10)
+    const timeLeft = parseInt(this.app.settings.getActiveRule().breakTime, 10)
     this.timer.start(timeLeft)
     this.badge.show(timeLeft)
   }
