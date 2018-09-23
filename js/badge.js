@@ -14,34 +14,37 @@ export class Badge {
       m,
       s;
 
-    chrome.browserAction.setBadgeText({text: timeLeft.toString()})
-    return
+    this.setBadgeColor(left)
+    this.setBadgeText(this.prettyPrintTime(left))
+  }
 
-    if (left > 0) {
-      h = Math.floor(left / 3600);
-      tempLeft = left % 3600;
-      s = tempLeft % 60;
-      m = (tempLeft - s) / 60;
-      if (left > 300) {
-        chrome.browserAction.setBadgeBackgroundColor({color : [66, 134, 244, 255]});
-      }
-
-      if (left <= 300 && left > 60) {
-        chrome.browserAction.setBadgeBackgroundColor({color : [255, 140, 0, 255]});
-      }
-
-      if (left <= 60) {
-        chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
-      }
-      chrome.browserAction.setBadgeText({text: m.pad(2) + ':' + s.pad(2)});
-
+  setBadgeColor(timeLeft) {
+    if (timeLeft > 300) {
+      chrome.browserAction.setBadgeBackgroundColor({color : [66, 134, 244, 255]});
+    } else if (timeLeft > 60) {
+      chrome.browserAction.setBadgeBackgroundColor({color : [255, 140, 0, 255]});
     } else {
       chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
-      chrome.browserAction.setBadgeText({text: '00:00'});
     }
   }
 
+  setBadgeText(text) {
+    chrome.browserAction.setBadgeText({text: text});
+  }
+
+  prettyPrintTime(seconds) {
+    const minute = 60
+    const hour = minute * 60
+    const day = hour * 24
+    const week = day * 7
+    if (seconds / week >= 1) return Math.floor(seconds / week) + 'w'
+    if (seconds / day >= 1) return Math.floor(seconds / day) + 'd'
+    if (seconds / hour >= 1) return Math.floor(seconds / hour) + 'h'
+    if (seconds / minute >= 1) return Math.floor(seconds / minute) + 'm'
+    return seconds + 's'
+  }
+
   hide() {
-    chrome.browserAction.setBadgeText({text: ''})
+    this.setBadgeText('')
   }
 }
