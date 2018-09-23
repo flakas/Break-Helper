@@ -13,12 +13,11 @@ export class WhetherToGoOnBreak extends Notification {
 
   tick(timeLeft) {
     this.timeLeft = timeLeft
-    //this.update()
   }
 
   getText() {
     return {
-      type: 'progress',
+      type: 'basic',
       title: 'Break Helper',
       message: "You've been working for quite a while, please take a break.",
       iconUrl: 'icon128.png',
@@ -27,7 +26,6 @@ export class WhetherToGoOnBreak extends Notification {
         { title: 'Skip this break' }
       ],
       requireInteraction: true,
-      progress: this.getProgress()
     }
   }
 
