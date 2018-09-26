@@ -25,6 +25,10 @@ export class Notification {
     }
   }
 
+  tick() {
+
+  }
+
   update() {
     chrome.notifications.update(this.notificationId, this.getText())
   }
@@ -56,6 +60,7 @@ export class Notification {
     if (notificationId === this.notificationId && byUser) {
       this.closedByUser()
     }
+    this.hide()
   }
 
   firstButtonClick() {
